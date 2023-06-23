@@ -21,7 +21,7 @@ selecting arrays or maps, though: e.g., `colArray[Int]("name")` stands for `col[
 
 This is the whole list of column alias:
 
-| Doric column type |            Column alias            | 
+| Doric column type |           Column alias            | 
 |:-----------------:|:----------------------------------:|
 |     `String`      |             colString              |
 |      `Null`       |              colNull               |
@@ -85,7 +85,7 @@ val complexCol: DoricColumn[Int] =
       .transform(_ + 1.lit)
       .aggregate(0.lit)(_ + _)
 // complexCol: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$2946/0x000000010132e840@5a64f52b)
+//   Kleisli(cats.data.Kleisli$$Lambda$2890/0x00000001012d3040@4b5c84be)
 // )
   
 dfArrays.select(complexCol as "complexTransformation").show()
@@ -277,7 +277,7 @@ The default doric syntax is a little stricter and forces us to transform these v
 ```scala
 val colD = colInt("int") + 1.lit
 // colD: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$2946/0x000000010132e840@4468aa66)
+//   Kleisli(cats.data.Kleisli$$Lambda$2890/0x00000001012d3040@61e23a44)
 // )
 
 intDF.select(colD).show()
@@ -298,11 +298,11 @@ we have to _explicitly_ add the following import statement:
 import doric.implicitConversions.literalConversion
 val colSugarD = colInt("int") + 1
 // colSugarD: DoricColumn[Int] = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$2946/0x000000010132e840@3bead9b5)
+//   Kleisli(cats.data.Kleisli$$Lambda$2890/0x00000001012d3040@283dd82a)
 // )
 val columConcatLiterals = concat("this", "is","doric") // concat expects DoricColumn[String] values, the conversion puts them as expected
 // columConcatLiterals: StringColumn = TransformationDoricColumn(
-//   Kleisli(cats.data.Kleisli$$Lambda$2946/0x000000010132e840@2596ae35)
+//   Kleisli(cats.data.Kleisli$$Lambda$2890/0x00000001012d3040@53365a58)
 // ) // concat expects DoricColumn[String] values, the conversion puts them as expected
 
 intDF.select(colSugarD, columConcatLiterals).show()
@@ -334,3 +334,4 @@ concat("hi", 5) // expects only strings and an integer is found
 // concat("hi", 5) // expects only strings and an integer is found
 //              ^
 ```
+
